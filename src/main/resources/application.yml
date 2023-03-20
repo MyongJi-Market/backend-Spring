@@ -1,0 +1,22 @@
+
+# < Main > Profile
+spring:
+  profiles:
+    active: dev
+    include: aws
+
+  jpa:
+    open-in-view: true
+
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    org.hibernate.SQL: debug
