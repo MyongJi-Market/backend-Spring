@@ -1,6 +1,7 @@
 package org.myongjimarket.domain;
 
 import lombok.*;
+import org.myongjimarket.domain.constant.ItemStatus;
 
 import javax.persistence.*;
 
@@ -27,5 +28,8 @@ public class Item {
     private String detail;
 
     private int price;
+
+    @Enumerated(EnumType.STRING)
+    private ItemStatus itemStatus;
 
 }
