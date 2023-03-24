@@ -1,8 +1,11 @@
 package org.myongjimarket.domain;
 
 import lombok.*;
+import org.myongjimarket.domain.base.BaseEntity;
+import org.myongjimarket.domain.constant.Authority;
 import org.myongjimarket.domain.constant.Rating;
 import org.myongjimarket.domain.constant.Campus;
+import org.myongjimarket.dto.MemberResponseDto;
 import org.myongjimarket.dto.SignupRequestDto;
 
 import javax.persistence.*;
@@ -12,7 +15,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +35,9 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Rating rating;
 
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
+
 
     /**
      * @param requestDto 회원가입 요청 Dto
@@ -44,6 +50,15 @@ public class Member {
                 .username(requestDto.getUsername())
                 .campus(requestDto.getCampus())
                 .rating(Rating.BRONZE)
+                .authority(Authority.USER)
+                .build();
+    }
+
+    public MemberResponseDto toResponseDto() {
+        return MemberResponseDto.builder()
+                .email(getEmail())
+                .username(getUsername())
+                .campus(getCampus())
                 .build();
     }
 
