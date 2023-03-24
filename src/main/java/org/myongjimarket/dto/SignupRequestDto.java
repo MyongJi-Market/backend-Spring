@@ -5,8 +5,8 @@ import org.myongjimarket.domain.constant.Campus;
 
 @Getter
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignupRequestDto {
     private String email;
     private String password;
