@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 public enum ResponseCode {
 
-    SIGNUP_SUCCESS(HttpStatus.CREATED, "회원가입 성공!");
+    SIGNUP_SUCCESS(HttpStatus.CREATED, "회원가입 성공"),
+    LOGIN_SUCCESS(HttpStatus.OK, "로그인 성공");
+
     private final HttpStatus httpStatus;
     private final String message;
 

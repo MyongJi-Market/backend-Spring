@@ -4,6 +4,7 @@ import lombok.*;
 import org.myongjimarket.domain.constant.Campus;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
