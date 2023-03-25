@@ -3,7 +3,9 @@
 spring:
   profiles:
     active: dev
-    include: aws
+    include:
+      - aws
+      - jwt
 
   jpa:
     open-in-view: true
