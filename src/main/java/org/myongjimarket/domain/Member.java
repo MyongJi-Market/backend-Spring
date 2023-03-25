@@ -7,6 +7,7 @@ import org.myongjimarket.domain.constant.Rating;
 import org.myongjimarket.domain.constant.Campus;
 import org.myongjimarket.dto.MemberResponseDto;
 import org.myongjimarket.dto.SignupRequestDto;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
@@ -32,25 +33,25 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Campus campus;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Rating rating;
+    private Rating rating = Rating.BRONZE;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Authority authority;
+    private Authority authority = Authority.ROLE_USER;
 
 
     /**
      * @param requestDto 회원가입 요청 Dto
      * Rating 은 무조건 브론즈 등급부터 시작.
      */
-    public static Member toEntity(SignupRequestDto requestDto) {
+    public static Member toEntity(SignupRequestDto requestDto, PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .email(requestDto.getEmail())
-                .password(requestDto.getPassword())
+                .password(passwordEncoder.encode(requestDto.getPassword()))
                 .username(requestDto.getUsername())
                 .campus(requestDto.getCampus())
-                .rating(Rating.BRONZE)
-                .authority(Authority.USER)
                 .build();
     }
 
